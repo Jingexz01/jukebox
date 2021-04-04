@@ -10,7 +10,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["botinfo", "info", "stats"],
     name: "about",
-    description: "Send the bot's info",
+    description: "Send the bot's info/stats",
     usage: "{prefix}about"
 })
 export class AboutCommand extends BaseCommand {
@@ -41,7 +41,7 @@ YTDL-Core version   :: v${(await import(this.getPackageJSON("ytdl-core"))).versi
 Opus Encoder        :: ${opusEncoderName} v${(await import(this.getPackageJSON(opusEncoderName))).version}
 Bot Version         :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
 
-Source code         :: https://sh.hzmi.xyz/jukebox
+Source code         :: https://github.com/Jingexz01/jukebox
 \`\`\`
         `)
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot.`)
