@@ -14,9 +14,8 @@ export class InviteCommand extends BaseCommand {
     public async execute(message: IMessage): Promise<void> {
         message.channel.send(
             createEmbed("info")
-                .setTimestamp()
                 .addField("Discord Support Server", `[Click Here To Join](https://discord.gg/DBHxxT7)`)
                 .addField("Discord bot invite link", `[Click here](${await this.client.generateInvite({ permissions: 53857345 })})`)
         ).catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
-    }
+    } 
 }
