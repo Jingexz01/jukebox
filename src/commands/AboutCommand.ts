@@ -46,7 +46,7 @@ Source code         :: https://github.com/Jingexz01/jukebox
         `)
                 .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setTimestamp()
-                .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot.`, `About Command`)
+                .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot. - About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
     }
 
