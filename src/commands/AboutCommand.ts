@@ -44,6 +44,8 @@ Bot Version         :: v${(await import(path.resolve(process.cwd(), "package.jso
 Source code         :: https://github.com/Jingexz01/jukebox
 \`\`\`
         `)
+                .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL(), "Bot Coded By: Jingexz01✔#2841")
+                .setTimestamp()
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
     }
