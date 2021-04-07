@@ -42,6 +42,7 @@ Opus Encoder        :: ${opusEncoderName} v${(await import(this.getPackageJSON(o
 Bot Version         :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
 
 Source code         :: https://github.com/Jingexz01/jukebox
+Discord Bot Support Server :: https://discord.gg/DBHxxT7
 \`\`\`
         `)
                 .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
