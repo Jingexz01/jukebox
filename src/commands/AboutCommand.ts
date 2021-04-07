@@ -43,11 +43,11 @@ Bot System Version  :: v${(await import(path.resolve(process.cwd(), "package.jso
 Bot Owned And Coded By :: Jingexz01✔#2841
 
 Source code         :: https://github.com/Jingexz01/jukebox
-Discord Bot Support Server :: [Click Here To Join](https://discord.gg/DBHxxT7)
 \`\`\`
         `)
                 .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setTimestamp()
+                .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot. - About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
     }
