@@ -31,7 +31,9 @@ export class PlayCommand extends BaseCommand {
 
         if (message.guild?.queue !== null && voiceChannel.id !== message.guild?.queue.voiceChannel?.id) {
             return message.channel.send(
-                createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`) .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp()
+                createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`)
+                    .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
+                    .setTimestamp()
            );
         }
 
@@ -81,7 +83,7 @@ export class PlayCommand extends BaseCommand {
                 );
             } catch (e) {
                 this.client.logger.error("YT_PLAYLIST_ERR:", new Error(e.stack));
-                return message.channel.send(createEmbed("error", `I could not load the playlist!\nError: \`${e.message}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp());
+                return message.channel.send(createEmbed("error", `I could not load the playlist!\nError: \`${e.message}\``).setTimestamp());
             }
         }
         try {
@@ -91,7 +93,7 @@ export class PlayCommand extends BaseCommand {
         } catch (e) {
             try {
                 const videos = await this.client.youtube.searchVideos(searchString, this.client.config.searchMaxResults);
-                if (videos.length === 0) return message.channel.send(createEmbed("warn", "I could not obtain any search results!").setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp());
+                if (videos.length === 0) return message.channel.send(createEmbed("warn", "I could not obtain any search results!").setTimestamp());
                 if (this.client.config.disableSongSelection) { video = await this.client.youtube.getVideo(videos[0].id); } else {
                     let index = 0;
                     const msg = await message.channel.send(new MessageEmbed()
@@ -118,17 +120,17 @@ export class PlayCommand extends BaseCommand {
                         response.first()?.delete({ timeout: 3000 }).catch(e => e); // do nothing
                     } catch (error) {
                         msg.delete().catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
-                        return message.channel.send(createEmbed("error", "No or invalid value entered, music selection canceled.").setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp());
+                        return message.channel.send(createEmbed("error", "No or invalid value entered, music selection canceled.").setTimestamp());
                     }
                     if (response.first()?.content === "c" || response.first()?.content === "cancel") {
-                        return message.channel.send(createEmbed("info", "Music selection canceled.").setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp());
+                        return message.channel.send(createEmbed("info", "Music selection canceled.").setTimestamp());
                     }
                     const videoIndex = parseInt(response.first()?.content as string);
                     video = await this.client.youtube.getVideo(videos[videoIndex - 1].id);
                 }
             } catch (err) {
                 this.client.logger.error("YT_SEARCH_ERR:", err);
-                return message.channel.send(createEmbed("error", `I could not obtain any search results!\nError: \`${err.message}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp());
+                return message.channel.send(createEmbed("error", `I could not obtain any search results!\nError: \`${err.message}\``).setTimestamp());
             }
         }
         return this.handleVideo(video, message, voiceChannel);
@@ -153,14 +155,14 @@ export class PlayCommand extends BaseCommand {
             }
             message.guild.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp().setThumbnail(song.thumbnail))
+                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setTimestamp().setThumbnail(song.thumbnail))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
         } else {
             message.guild!.queue = new ServerQueue(message.channel as ITextChannel, voiceChannel);
             message.guild?.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setThumbnail(song.thumbnail).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp())
+                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setThumbnail(song.thumbnail).setTimestamp())
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
             try {
@@ -170,12 +172,12 @@ export class PlayCommand extends BaseCommand {
                 message.guild?.queue.songs.clear();
                 message.guild!.queue = null;
                 this.client.logger.error("PLAY_CMD_ERR:", error);
-                message.channel.send(createEmbed("error", `Error: Could not join the voice channel!\nReason: \`${error.message}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp())
+                message.channel.send(createEmbed("error", `Error: Could not join the voice channel!\nReason: \`${error.message}\``).setTimestamp())
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 return undefined;
             }
             this.play(message.guild!).catch(err => {
-                message.channel.send(createEmbed("error", `Error while trying to play music\nReason: \`${err.message}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp())
+                message.channel.send(createEmbed("error", `Error while trying to play music\nReason: \`${err.message}\``).setTimestamp())
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 return this.client.logger.error("PLAY_CMD_ERR:", err);
             });
@@ -215,7 +217,7 @@ export class PlayCommand extends BaseCommand {
                 serverQueue.playing = true;
                 this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids}]` : ""} Music: "${song.title}" on ${guild.name} started`);
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `▶ Start playing: **[${song.title}](${song.url})**`).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp().setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `▶ Start playing: **[${song.title}](${song.url})**`).setTimestamp().setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e));
             })
@@ -224,12 +226,12 @@ export class PlayCommand extends BaseCommand {
                 // eslint-disable-next-line max-statements-per-line
                 if (serverQueue.loopMode === 0) { serverQueue.songs.deleteFirst(); } else if (serverQueue.loopMode === 2) { serverQueue.songs.deleteFirst(); serverQueue.songs.addSong(song); }
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `⏹ Stop playing: **[${song.title}](${song.url})**`).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp().setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `⏹ Stop playing: **[${song.title}](${song.url})**`).setTimestamp().setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e))
                     .finally(() => {
                         this.play(guild).catch(e => {
-                            serverQueue.textChannel?.send(createEmbed("error", `Error while trying to play music\nReason: \`${e}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp())
+                            serverQueue.textChannel?.send(createEmbed("error", `Error while trying to play music\nReason: \`${e}\``).setTimestamp())
                                 .catch(e => this.client.logger.error("PLAY_ERR:", e));
                             serverQueue.connection?.dispatcher.end();
                             return this.client.logger.error("PLAY_ERR:", e);
@@ -237,7 +239,7 @@ export class PlayCommand extends BaseCommand {
                     });
             })
             .on("error", (err: Error) => {
-                serverQueue.textChannel?.send(createEmbed("error", `Error while playing music\nReason: \`${err.message}\``).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp())
+                serverQueue.textChannel?.send(createEmbed("error", `Error while playing music\nReason: \`${err.message}\``).setTimestamp())
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 guild.queue?.voiceChannel?.leave();
                 guild.queue = null;
