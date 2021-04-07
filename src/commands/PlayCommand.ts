@@ -31,7 +31,7 @@ export class PlayCommand extends BaseCommand {
 
         if (message.guild?.queue !== null && voiceChannel.id !== message.guild?.queue.voiceChannel?.id) {
             return message.channel.send(
-                createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp()
+                createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`) .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp()
            );
         }
 
