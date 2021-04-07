@@ -193,7 +193,6 @@ export class PlayCommand extends BaseCommand {
             if (serverQueue.lastVoiceStateUpdateMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastVoiceStateUpdateMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
             serverQueue.textChannel?.send(
                 createEmbed("info", `⏹ Queue is finished! Use "${guild.client.config.prefix}play" to play more music`)
-                    .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
                     .setTimestamp()
             ).catch(e => this.client.logger.error("PLAY_ERR:", e));
             serverQueue.connection?.disconnect();
