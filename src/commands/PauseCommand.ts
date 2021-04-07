@@ -18,12 +18,12 @@ export class PauseCommand extends BaseCommand {
             message.guild.queue.playing = false;
             message.guild.queue.connection?.dispatcher.pause();
             return message.channel.send(createEmbed("info", "⏸ Paused the music for you!")
-            .setTimestamp()
-            .setFooter(`Command Pause Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()));
+                .setTimestamp()
+                .setFooter(`Command Pause Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()));
         }
         message.channel.send(createEmbed("warn", "❗ Music is already paused!")
             .setTimestamp()
-            .setFooter(`Command Pause Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()))
+            .setFooter(`Command NowpLaying Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()))
             .catch(e => this.client.logger.error("PAUSE_CMD_ERR:", e));
     }
 }
