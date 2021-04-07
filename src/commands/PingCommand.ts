@@ -27,6 +27,7 @@ export class PingCommand extends BaseCommand {
                     value: `**\`${wsLatency}\`** ms`,
                     inline: true
                 })
+                .setTimestamp()
                 .setFooter(`Command Ping Was Requested by: ${message.author.tag}`, message.author.displayAvatarURL());
             msg.edit(embed);
             msg.edit("");
