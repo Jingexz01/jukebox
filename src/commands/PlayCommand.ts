@@ -34,7 +34,7 @@ export class PlayCommand extends BaseCommand {
                 createEmbed("warn", `The music player is already playing to **${message.guild?.queue.voiceChannel?.name}** voice channel`)
                     .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
                     .setTimestamp()
-           );
+            );
         }
 
         if (/^https?:\/\/(www\.youtube\.com|youtube.com)\/playlist(.*)$/.exec(url)) {
@@ -61,8 +61,8 @@ export class PlayCommand extends BaseCommand {
                 if (skippedVideos !== 0) {
                     message.channel.send(
                         createEmbed("warn", `${skippedVideos} ${skippedVideos >= 2 ? `videos` : `video`} are skipped because it's a private video`)
-                         .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
-                         .setTimestamp()
+                            .setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
+                            .setTimestamp()
                     ).catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
                 }
                 message.channel.messages.fetch(addingPlaylistVideoMessage.id, false).then(m => m.delete()).catch(e => this.client.logger.error("YT_PLAYLIST_ERR:", e));
