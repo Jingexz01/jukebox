@@ -39,10 +39,11 @@ Discord.js version  :: v${version}
 FFmpeg version      :: v${(await import(this.getPackageJSON("ffmpeg-static")))["ffmpeg-static"]["binary-release-name"]}
 YTDL-Core version   :: v${(await import(this.getPackageJSON("ytdl-core"))).version}
 Opus Encoder        :: ${opusEncoderName} v${(await import(this.getPackageJSON(opusEncoderName))).version}
-Bot Version         :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
+Bot System Version  :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
+Bot Owned And Coded By :: Jingexz01✔#2841
 
 Source code         :: https://github.com/Jingexz01/jukebox
-Discord Bot Support Server :: https://discord.gg/DBHxxT7
+Discord Bot Support Server :: [Click Here To Join](https://discord.gg/DBHxxT7)
 \`\`\`
         `)
                 .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
