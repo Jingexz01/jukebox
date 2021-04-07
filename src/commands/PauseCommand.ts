@@ -17,7 +17,9 @@ export class PauseCommand extends BaseCommand {
         if (message.guild?.queue?.playing) {
             message.guild.queue.playing = false;
             message.guild.queue.connection?.dispatcher.pause();
-            return message.channel.send(createEmbed("info", "⏸ Paused the music for you!"));
+            return message.channel.send(createEmbed("info", "⏸ Paused the music for you!")
+            .setTimestamp()
+            .setFooter(`Command Pause Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()));
         }
         message.channel.send(createEmbed("warn", "❗ Music is already paused!")
             .setTimestamp()
