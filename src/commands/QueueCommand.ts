@@ -15,6 +15,8 @@ export class QueueCommand extends BaseCommand {
     public execute(message: IMessage): any {
         const embed = createEmbed("info")
             .setTitle("Music Queue")
+            .setTimestamp()
+            .setFooter(`Command Queue Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
             .setThumbnail(message.client.user?.avatarURL() as string);
 
         let num = 1;
@@ -29,19 +31,19 @@ export class QueueCommand extends BaseCommand {
                     msg.createReactionCollector((reaction, user) => reaction.emoji.name === "◀️" && user.id === message.author.id, { time: 80 * 1000 }).on("collect", () => {
                         if (index === 0) return undefined;
                         index--;
-                        embed.setDescription(indexes[index]).setFooter(`Page ${index + 1} of ${indexes.length}`, "https://raw.githubusercontent.com/Hazmi35/jukebox/main/.github/images/info.png");
+                        embed.setDescription(indexes[index]).setFooter(`Page ${index + 1} of ${indexes.length}`, `Command Queue Was Requested By: ${message.author.tag}`);
                         msg.edit(embed).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
                     });
                     msg.createReactionCollector((reaction, user) => reaction.emoji.name === "▶️" && user.id === message.author.id, { time: 80 * 1000 }).on("collect", () => {
                         if (index + 1 === indexes.length) return undefined;
                         index++;
-                        embed.setDescription(indexes[index]).setFooter(`Page ${index + 1} of ${indexes.length}`, "https://raw.githubusercontent.com/Hazmi35/jukebox/main/.github/images/info.png");
+                        embed.setDescription(indexes[index]).setFooter(`Page ${index + 1} of ${indexes.length}`, `Command Queue Was Requested By: ${message.author.tag}`);
                         msg.edit(embed).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
                     });
                 }).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
             }).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
         } else {
-            message.channel.send(embed.setDescription(songs!.join("\n"))).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
+            message.channel.send(embed.setTimestamp().setFooter(`Command Pause Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setDescription(songs!.join("\n"))).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
         }
     }
 
