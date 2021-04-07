@@ -23,7 +23,7 @@ export class PlayCommand extends BaseCommand {
         const voiceChannel = message.member!.voice.channel!;
         if (!args[0]) {
             return message.channel.send(
-                createEmbed("warn", `Invalid argument, type \`${this.client.config.prefix}help play\` for more info`).setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp()
+                createEmbed("warn", `Invalid argument, type \`${this.client.config.prefix}help play\` for more info`).setFooter(`Command Play Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setTimestamp()
             );
         }
         const searchString = args.join(" ");
