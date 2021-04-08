@@ -47,7 +47,7 @@ Source code         :: https://github.com/Jingexz01/jukebox
         `)
                 .setFooter(`Command About Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setTimestamp()
-                .addField("Use {prefix}link for Jingexz01\'s Social Accounts", "For Updates Check #\📣announcements")
+                .addField("Use >link for Jingexz01\'s Social Accounts.", "For Bot And Any Other Updates Check #\📣announcements")
                 .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot. - About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
