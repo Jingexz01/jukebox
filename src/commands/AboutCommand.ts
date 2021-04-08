@@ -45,7 +45,7 @@ Bot Owned And Coded By :: Jingexz01✔#2841
 Source code         :: https://github.com/Jingexz01/jukebox
 \`\`\`
         `)
-                .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
+                .setFooter(`Command About Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setTimestamp()
                 .addField("Use {prefix}link for Jingexz01\'s Social Accounts", "For Updates Check #\📣announcements")
                 .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
