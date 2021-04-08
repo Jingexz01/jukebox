@@ -151,14 +151,14 @@ export class PlayCommand extends BaseCommand {
             }
             message.guild.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setTimestamp().setFooter(`Command Play Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL()).setThumbnail(song.thumbnail))
+                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setTimestamp().setThumbnail(song.thumbnail))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
         } else {
             message.guild!.queue = new ServerQueue(message.channel as ITextChannel, voiceChannel);
             message.guild?.queue.songs.addSong(song);
             if (!playlist) {
-                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setTimestamp().setFooter(`Command Play Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL()).setThumbnail(song.thumbnail))
+                message.channel.send(createEmbed("info", `✅ Music **[${song.title}](${song.url})** has been added to the queue`).setTimestamp().setThumbnail(song.thumbnail))
                     .catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
             }
             try {
@@ -211,7 +211,7 @@ export class PlayCommand extends BaseCommand {
                 serverQueue.playing = true;
                 this.client.logger.info(`${this.client.shard ? `[Shard #${this.client.shard.ids}]` : ""} Music: "${song.title}" on ${guild.name} started`);
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `▶ Start playing: **[${song.title}](${song.url})**`).setTimestamp().setFooter(`Command Play Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL()).setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `▶ Start playing: **[${song.title}](${song.url})**`).setTimestamp().setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e));
             })
@@ -220,7 +220,7 @@ export class PlayCommand extends BaseCommand {
                 // eslint-disable-next-line max-statements-per-line
                 if (serverQueue.loopMode === 0) { serverQueue.songs.deleteFirst(); } else if (serverQueue.loopMode === 2) { serverQueue.songs.deleteFirst(); serverQueue.songs.addSong(song); }
                 if (serverQueue.lastMusicMessageID !== null) serverQueue.textChannel?.messages.fetch(serverQueue.lastMusicMessageID, false).then(m => m.delete()).catch(e => this.client.logger.error("PLAY_ERR:", e));
-                serverQueue.textChannel?.send(createEmbed("info", `⏹ Stop playing: **[${song.title}](${song.url})**`).setTimestamp().setFooter(`Command Play Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL()).setThumbnail(song.thumbnail))
+                serverQueue.textChannel?.send(createEmbed("info", `⏹ Stop playing: **[${song.title}](${song.url})**`).setTimestamp().setThumbnail(song.thumbnail))
                     .then(m => serverQueue.lastMusicMessageID = m.id)
                     .catch(e => this.client.logger.error("PLAY_ERR:", e))
                     .finally(() => {
