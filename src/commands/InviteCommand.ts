@@ -5,7 +5,7 @@ import { createEmbed } from "../utils/createEmbed";
 import { disableInviteCmd } from "../config";
 
 @DefineCommand({
-    name: "links",
+    name: "link",
     description: "Send the bot's link and owner info",
     usage: "{prefix}link",
     disable: disableInviteCmd
@@ -16,7 +16,7 @@ export class InviteCommand extends BaseCommand {
             createEmbed("info")
                 .setTimestamp()
                 .setTitle(`Jingexz01's Social Accounts`)
-                .setFooter(`Command Invite Was Requested By: ${message.author.tag}`, "Bot was coded and owned by: Jingexz01✔#2841")
+                .setFooter("Bot code and owned by: Jingexz01✔#2841", `Command Invite Was Requested By: ${message.author.tag}`)
                 .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
                 .addField("Jingexz01's Youtube Account", `[Subscribe And Check Out My Youtube Channel!](https://youtube.com/jingexz01)`)
                 .addField("Jingexz01's Website", `[Open Here](https://jingexz01.cf)`)
