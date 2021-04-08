@@ -5,9 +5,9 @@ import { createEmbed } from "../utils/createEmbed";
 import { disableInviteCmd } from "../config";
 
 @DefineCommand({
-    name: "invite",
-    description: "Send the bot's invite link",
-    usage: "{prefix}invite",
+    name: "links",
+    description: "Send the bot's link and owner info",
+    usage: "{prefix}link",
     disable: disableInviteCmd
 })
 export class InviteCommand extends BaseCommand {
@@ -15,9 +15,15 @@ export class InviteCommand extends BaseCommand {
         message.channel.send(
             createEmbed("info")
                 .setTimestamp()
-                .setFooter(`Command Invite Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
+                .setTitle(`Jingexz01's Social Accounts`)
+                .setFooter(`Command Invite Was Requested By: ${message.author.tag}`, "Bot was coded and owned by: Jingexz01✔#2841")
                 .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
-                .addField("Discord bot invite link", `[Click here](${await this.client.generateInvite({ permissions: 53857345 })})`)
+                .addField("Jingexz01's Youtube Account", `[Subscribe And Check Out My Youtube Channel!](https://youtube.com/jingexz01)`)
+                .addField("Jingexz01's Website", `[Open Here](https://jingexz01.cf)`)
+                .addField("Jingexz01's Twitter", `[Follow Me](https://twitter.com/jingexz01)`)
+                .addField("Jingexz01's Instagram", `[Follow Me On Instagram](https://instagram.com/jingexz01)`)
+                .addField("Jingexz01's Facebook Page", `[Follow And Like My Facebook Page](https://facebook.com/jingexz01)`)
+                .addField("Discord Bot Invite Link", `[Click here](${await this.client.generateInvite({ permissions: 53857345 })})`)
         ).catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
     }
 }
