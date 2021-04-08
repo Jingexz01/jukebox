@@ -34,7 +34,7 @@ export class HelpCommand extends BaseCommand {
                     .setColor("#00FF00")
                     .setTimestamp()
                     .setThumbnail(message.client.user?.displayAvatarURL() as string)
-                    .addField(`Use ${message.client.config.prefix}help <command> to get more info on a specific command!`)
+                    .addField(`Use ${message.client.config.prefix}help <command> to get more info on a specific command!`, "PlayEX")
                     .setFooter(`Command Help Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL())
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
         }
