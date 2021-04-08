@@ -7,7 +7,7 @@ import { createEmbed } from "../utils/createEmbed";
 @DefineCommand({
     aliases: ["commands", "cmds"],
     name: "help",
-    description: "Shows the help menu",
+    description: "Shows the help menu/\bot commands.",
     usage: "{prefix}help [command]"
 })
 export class HelpCommand extends BaseCommand {
@@ -20,7 +20,7 @@ export class HelpCommand extends BaseCommand {
                     .setTitle(`Information for the ${command.meta.name} command`)
                     .setThumbnail("https://raw.githubusercontent.com/Hazmi35/jukebox/main/.github/images/question_mark.png")
                     .setTimestamp()
-                    .setFooter(`Command Ping Was Requested by: ${message.author.tag}`, message.author.displayAvatarURL())
+                    .setFooter(`Command Help Was Requested/\Executed by: ${message.author.tag}`, message.author.displayAvatarURL())
                     .addFields({ name: "Name", value: `\`${command.meta.name}\``, inline: true },
                         { name: "Description", value: command.meta.description, inline: true },
                         { name: "Aliases", value: `${Number(command.meta.aliases?.length) > 0 ? command.meta.aliases?.map(c => `\`${c}\``).join(", ") as string : "None."}`, inline: true },
