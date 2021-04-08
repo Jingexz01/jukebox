@@ -21,22 +21,22 @@ export class AboutCommand extends BaseCommand {
 \`\`\`asciidoc
 Cached users count  :: ${await this.client.getUsersCount()}
 Channels count      :: ${await this.client.getChannelsCount()}
-Guilds count        :: ${await this.client.getGuildsCount()}
+Guilds/\Server count :: ${await this.client.getGuildsCount()}
 Shards count        :: ${this.client.shard ? `${this.client.shard.count}` : "N/A"}
 Shard ID            :: ${this.client.shard ? `${this.client.shard.ids[0]}` : "N/A"}
 Playing Music on    :: ${await this.client.getTotalPlaying()} guilds
 YT Data Strategy    :: ${await this.client.config.YouTubeDataRetrievingStrategy === "api" ? "REST API" : "HTML SCRAPING"}
 
-Platform            :: ${process.platform}
-Arch                :: ${process.arch}
+System Platform     :: ${process.platform}
+Architecture        :: ${process.arch}
 OS Uptime           :: ${formatMS(osUptime() * 1000)}
 Memory              :: ${this.bytesToSize(await this.client.getTotalMemory("rss"))}
 Process Uptime      :: ${formatMS(process.uptime() * 1000)}
-Bot Uptime          :: ${formatMS(this.client.uptime!)}
+Bot System Uptime   :: ${formatMS(this.client.uptime!)}
 
 Node.js version     :: ${process.version}
 Discord.js version  :: v${version}
-FFmpeg version      :: v${(await import(this.getPackageJSON("ffmpeg-static")))["ffmpeg-static"]["binary-release-name"]}
+FFMPEG version      :: v${(await import(this.getPackageJSON("ffmpeg-static")))["ffmpeg-static"]["binary-release-name"]}
 YTDL-Core version   :: v${(await import(this.getPackageJSON("ytdl-core"))).version}
 Opus Encoder        :: ${opusEncoderName} v${(await import(this.getPackageJSON(opusEncoderName))).version}
 Bot System Version  :: v${(await import(path.resolve(process.cwd(), "package.json"))).version}
@@ -47,7 +47,7 @@ Source code         :: https://github.com/Jingexz01/jukebox
         `)
                 .setFooter(`Command About Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setTimestamp()
-                .addField("Use {prefix}link for Jingexz01's Social Accounts!")
+                .addField("Use >link for Jingexz01/'s Social Accounts!")
                 .addField("Discord Support Server", `[Click here](https://discord.gg/DBHxxT7)`)
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot. - About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
