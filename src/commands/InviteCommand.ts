@@ -24,6 +24,7 @@ export class InviteCommand extends BaseCommand {
                 .addField("Jingexz01's Instagram", `[Follow Me On Instagram](https://instagram.com/jingexz01)`)
                 .addField("Jingexz01's Facebook Page", `[Follow And Like My Facebook Page](https://facebook.com/jingexz01)`)
                 .addField("Discord Bot Invite Link", `[Click here](${await this.client.generateInvite({ permissions: 53857345 })})`)
+                .setColor("#000000")
         ).catch(e => this.client.logger.error("PLAY_CMD_ERR:", e));
     }
 }
