@@ -24,7 +24,7 @@ export class SkipCommand extends BaseCommand {
         message.channel.send(
             createEmbed("info", `⏭ Skipped **[${song!.title}](${song!.url}})**`)
                 .setTimestamp()
-                .setFooter(`Command Ping Was Requested by: ${message.author.tag}`, message.author.displayAvatarURL())
+                .setFooter(`Command Skip Was Requested by: ${message.author.tag}`, message.author.displayAvatarURL())
                 .setThumbnail(song?.thumbnail as string)
         ).catch(e => this.client.logger.error("SKIP_CMD_ERR:", e));
     }
