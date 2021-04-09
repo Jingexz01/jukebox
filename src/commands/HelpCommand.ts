@@ -31,9 +31,10 @@ export class HelpCommand extends BaseCommand {
             message.channel.send(
                 createEmbed("info", message.client.commands.filter(cmd => !cmd.meta.disable && cmd.meta.name !== "eval").map(c => `\`${c.meta.name}\``).join(" "))
                     .setTitle("Help Menu")
-                    .setColor("#00FF00")
+                    .setColor("#000000")
                     .setTimestamp()
                     .setThumbnail(message.client.user?.displayAvatarURL() as string)
+                    .addField("`\website`\")
                     .addField(`Use ${message.client.config.prefix}help <command> to get more info on a specific command!`, "PlayEX - 2021")
                     .setFooter(`Command Help Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL())
             ).catch(e => this.client.logger.error("HELP_CMD_ERR:", e));
