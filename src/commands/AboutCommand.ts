@@ -24,7 +24,7 @@ Channels count      :: ${await this.client.getChannelsCount()}
 Guilds/\Server count :: ${await this.client.getGuildsCount()}
 Shards count        :: ${this.client.shard ? `${this.client.shard.count}` : "N/A"}
 Shard ID            :: ${this.client.shard ? `${this.client.shard.ids[0]}` : "N/A"}
-Playing Music on    :: ${await this.client.getTotalPlaying()} guilds
+Playing Music on    :: ${await this.client.getTotalPlaying()} Guilds/\Servers
 YT Data Strategy    :: ${await this.client.config.YouTubeDataRetrievingStrategy === "api" ? "REST API" : "HTML SCRAPING"}
 
 System Platform     :: ${process.platform}
@@ -49,8 +49,8 @@ Source code         :: https://github.com/Jingexz01/jukebox
                 .setTimestamp()
                 .setColor("#000000")
                 .addField("Use >link for Jingexz01\'s Social Accounts.", "For Bot And Any Other Updates Check #\📣announcements on Jingexz01\'s Server")
-                .addField("Discord Support Server/\Jingexz01\'s Server", `[Click here](https://discord.gg/DBHxxT7)`)
-                .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot. - About Command.`)
+                .addField("PlayEX Discord Bot Support Server/\Jingexz01\'s Server", `[Click Here to Join](https://discord.gg/DBHxxT7)`)
+                .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot | About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
     }
 
