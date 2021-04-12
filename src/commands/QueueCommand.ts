@@ -44,7 +44,7 @@ export class QueueCommand extends BaseCommand {
                 }).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
             }).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
         } else {
-            message.channel.send(embed.setTimestamp().setFooter(`Command Queue/\Executed Was Requested By: ${message.author.tag}`, message.author.displayAvatarURL()).setDescription(songs!.join("\n"))).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
+            message.channel.send(embed.setTimestamp().setFooter(`Command Queue Was Requested/\Executed By: ${message.author.tag}`, message.author.displayAvatarURL()).setDescription(songs!.join("\n"))).catch(e => this.client.logger.error("QUEUE_CMD_ERR:", e));
         }
     }
 
