@@ -28,7 +28,7 @@ export class PingCommand extends BaseCommand {
                     inline: true
                 })
                 .setTimestamp()
-                .setFooter(`Command Ping Was Requested by: ${message.author.tag}`, message.author.displayAvatarURL());
+                .setFooter(`Command Ping Was Requested/\Executed by: ${message.author.tag}`, message.author.displayAvatarURL());
             msg.edit(embed);
             msg.edit("");
         }).catch(e => this.client.logger.error("PING_CMD_ERR:", e));
@@ -44,7 +44,7 @@ export class PingCommand extends BaseCommand {
             [150, 200, "#FF6A00"]
         ];
 
-        const defaultColor = "#FF0D00";
+        const defaultColor = "#000000";
 
         const min = listColorHex.map(e => e[0]);
         const max = listColorHex.map(e => e[1]);
