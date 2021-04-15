@@ -49,7 +49,7 @@ Source code         :: https://github.com/Jingexz01/jukebox
                 .setTimestamp()
                 .setColor("#000000")
                 .addField("Use >link for Jingexz01\'s Social Accounts.", "For Bot And Any Other Updates Check #\📣announcements on Jingexz01\'s Server")
-                .addField("PlayEX Discord Bot Support Server/\Jingexz01\'s Server", `[Click Here to Join](https://discord.gg/DBHxxT7)`)
+                .addField("PlayEX Discord Bot Support Server/\Jingexz01\'s Server", `[Click Here to Join](https://jingexz01.gq/discord-server)`)
                 .setAuthor(`${this.client.user?.username as string} - Just a simple Discord music bot | About Command.`)
         ).catch(e => this.client.logger.error("ABOUT_CMD_ERR:", e));
     }
